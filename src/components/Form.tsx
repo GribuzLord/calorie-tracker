@@ -24,6 +24,13 @@ const handleChange=(e:ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElem
   console.log(e.target.id)
   console.log(e.target.value)
 }
+  const isValidActivity=()=>{
+    const {name,calories}=activity
+    console.log(name.trim()!=='' && calories>0)
+    return name.trim()!==''&& calories>0
+  }
+
+
   return (
     <form className="space-y-5 bg-white shadow p-10 rounded-lg" >
 
@@ -49,7 +56,7 @@ const handleChange=(e:ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElem
         <input id="calories" type="number" className="border border-slate-300 p-2 rounded-lg"
         placeholder="Calorias. Ej. 300 o 500" value={activity.calories} onChange={handleChange}/>
       </div>
-      <input type="submit" className="bg-gray-800 hober: bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer" value='Guardar Comida o Guardar Ejercicio' />
+      <input type="submit" className="bg-gray-800 hober: bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer disabled:opacity-10" value='Guardar Comida o Guardar Ejercicio' disabled={!isValidActivity()} />
     </form>
   )
 }
